@@ -1,0 +1,17 @@
+{
+  "name": "RoadReady Abu Dhabi",
+  "short_name": "RoadReady AD",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#061621",
+  "theme_color": "#071A26",
+  "description": "Abu Dhabi driving theory practice trainer",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

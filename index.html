@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#071A26">
+  <meta name="description" content="A mobile-friendly Abu Dhabi driving theory practice app.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>RoadReady AD — Light Vehicle Automatic</title>
+</head>
+<body>
+<div class="glow glow-a"></div><div class="glow glow-b"></div>
+<div class="app">
+  <header class="topbar">
+    <button class="brand" data-view="home" aria-label="Home">
+      <span class="brandmark">RR</span><span><b>RoadReady</b><small>LIGHT VEHICLE • AUTOMATIC</small></span>
+    </button>
+    <button id="soundBtn" class="icon-btn" aria-label="Toggle sound">🔊</button>
+  </header>
+
+  <main>
+    <section id="home" class="view active">
+      <div class="hero card">
+        <div>
+          <span class="eyebrow">DRIVING THEORY TRAINER</span>
+          <h1>Practice smarter.<br><em>Drive safer.</em></h1>
+          <p>Practice the Abu Dhabi light-vehicle automatic theory exam using handbook-based questions.</p>
+        </div>
+        <div class="road-art" aria-hidden="true"><div class="road"><i></i><i></i><i></i></div><div class="car">🚘</div></div>
+        <button class="primary big" id="quickStart">Start quick practice <span>→</span></button>
+      </div>
+
+      <div class="stats-grid">
+        <article class="stat card"><span>Best score</span><strong id="bestScore">0%</strong><small>Personal record</small></article>
+        <article class="stat card"><span>Questions</span><strong id="answeredCount">0</strong><small>Answered</small></article>
+        <article class="stat card"><span>Accuracy</span><strong id="accuracy">0%</strong><small>All sessions</small></article>
+      </div>
+
+      <h2>Choose a mode</h2>
+      <div class="mode-grid">
+        <button class="mode card" data-mode="sets"><span class="mode-icon">📋</span><b>Exam Sets</b><small>8 prepared mock exams</small></button><button class="mode card" data-mode="practice"><span class="mode-icon">⚡</span><b>Quick Practice</b><small>10 mixed questions</small></button>
+        <button class="mode card" data-mode="mock"><span class="mode-icon">⏱️</span><b>Mock Exam</b><small>45 questions • 30 minutes</small></button>
+        <button class="mode card" data-mode="category"><span class="mode-icon">🛣️</span><b>Study by Topic</b><small>Focus on weak areas</small></button>
+        <button class="mode card" data-mode="mistakes"><span class="mode-icon">↻</span><b>Review Mistakes</b><small id="mistakeCount">0 saved questions</small></button>
+      </div>
+
+      <div class="notice card"><b>Exam format note</b><p>This simulator uses the commonly reported EDC format: 45 questions, 30 minutes, and 36 correct (80%) to pass. Public EDC/TAMM pages do not clearly confirm these figures, so verify with EDC. Questions are original handbook-based practice—not leaked live exam questions.</p></div>
+    </section>
+
+    <section id="categories" class="view">
+      <div class="section-head"><button class="back" data-view="home">←</button><div><span class="eyebrow">FOCUSED STUDY</span><h1>Choose a topic</h1></div></div>
+      <div id="categoryList" class="category-list"></div>
+    </section>
+
+    <section id="setup" class="view">
+      <div class="section-head"><button class="back" data-view="home">←</button><div><span class="eyebrow">MOCK EXAM</span><h1>Test settings</h1></div></div>
+      <div class="card settings">
+        <label>Number of questions <output id="qCountOut">30</output><input id="qCount" type="range" min="10" max="50" step="5" value="30"></label>
+        <label>Time limit <output id="timeOut">30 min</output><input id="timeLimit" type="range" min="10" max="60" step="5" value="30"></label>
+        <label>Target score <output id="targetOut">75%</output><input id="targetScore" type="range" min="60" max="90" step="5" value="75"></label>
+        <button class="primary big" id="startMock">Begin mock exam →</button>
+        <p class="muted">These are practice settings, not a claim about the official exam format.</p>
+      </div>
+    </section>
+
+    <section id="quiz" class="view">
+      <div class="quiz-head">
+        <button class="back" id="quitQuiz">×</button>
+        <div class="progress-wrap"><div class="progress-meta"><span id="quizMode">PRACTICE</span><span id="counter">1 / 10</span></div><div class="progress"><i id="progressBar"></i></div></div>
+        <div id="timer" class="timer">--:--</div>
+      </div>
+      <div class="question-card card">
+        <div class="q-top"><span id="categoryPill" class="pill">Road Signs</span><button id="bookmarkBtn" class="bookmark" aria-label="Bookmark">☆</button></div>
+        <h2 id="questionText"></h2>
+        <div id="options" class="options"></div>
+        <div id="explanation" class="explanation hidden"></div>
+        <button id="nextBtn" class="primary big hidden">Next question →</button>
+      </div>
+    </section>
+
+    <section id="results" class="view">
+      <div class="result-card card">
+        <div id="resultRing" class="result-ring"><span id="resultPct">0%</span></div>
+        <span class="eyebrow">SESSION COMPLETE</span>
+        <h1 id="resultTitle">Good effort</h1>
+        <p id="resultText"></p>
+        <div class="result-stats"><div><strong id="correctStat">0</strong><small>Correct</small></div><div><strong id="wrongStat">0</strong><small>Review</small></div><div><strong id="timeStat">0:00</strong><small>Time</small></div></div>
+        <button class="primary big" id="retryBtn">Try another set</button>
+        <button class="secondary big" data-view="home">Back to dashboard</button>
+      </div>
+      <div id="reviewList" class="review-list"></div>
+    </section>
+  </main>
+</div>
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body></html>
